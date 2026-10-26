@@ -1,0 +1,25 @@
+  # Virtual environment
+.venv/
+venv/
+
+# Python cache
+__pycache__/
+*.pyc
+*.pyo
+
+# Runtime outputs (regenerated on every run — do not commit)
+output/*.csv
+output/*.json
+
+# Socrata pull artifacts (large; regenerate with fetch_pluto.py)
+data/pluto_gfa.csv
+data/pluto_full.csv
+
+# macOS system files
+.DS_Store
+._*
+.Spotlight-V100
+.Trashes
+
+# VS Code workspace state
+.vscode/
