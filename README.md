@@ -89,10 +89,10 @@ $$\text{BBL} = \text{Boro (1 digit)} + \text{Block (padded to 5 digits)} + \text
 The pipeline runs sequential vector checks across ingested records, evaluating each record against deterministic risk criteria:
 
 | Rule Code | Validation Criteria | Mathematical / Logical Condition | Governance Risk Mitigated | Downstream Action |
-| --- | --- | --- | --- | --- |
+|---|---|---|---|---|
 | `ERR_BBL_SYNTAX` | Structural & Lexical Validity | `regex match: ^[0-9]{10}$` on unparsed string | Broken entity resolution, dropped leading zeroes, corrupt foreign keys. | Record rejected; isolated to audit trail. |
 | `ERR_PLUTO_MISSING` | Ground Truth Existence | `gfa_pluto is NULL` | Phantom assets, unregistered parcels, fraudulent reporting. | Record rejected; isolated to audit trail. |
-| `ERR_GFA_MISMATCH` | Physical Footprint Reconciliation | $\frac{\Vert{} \text{GFA}_{\text{reported}} - \text{GFA}_{\text{PLUTO}} \Vert{}}{\text{GFA}_{\text{PLUTO}}} > 0.10$ | Miscalculated emissions baselines, out-of-date building alterations. | Record rejected; isolated to audit trail. |
+| `ERR_GFA_MISMATCH` | Physical Footprint Reconciliation | $\frac{\| \text{GFA}_{\text{reported}} - \text{GFA}_{\text{PLUTO}} \|}{\text{GFA}_{\text{PLUTO}}} > 0.10$ | Miscalculated emissions baselines, out-of-date building alterations. | Record rejected; isolated to audit trail. |
 | `ERR_METER_INACTIVE` | Telemetry Validity & Active Status | `meter_active == False` OR $\text{EUI} \le 0$ | Skewed portfolio aggregates, zero-value division, inaccurate decarbonization benchmarks. | Record rejected; isolated to audit trail. |
 
 ### 3. Split-Stream Output & Audit Evidence Generation
