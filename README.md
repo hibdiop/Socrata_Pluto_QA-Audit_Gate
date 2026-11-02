@@ -1,6 +1,17 @@
-# NYC BBL QA Gate & Audit-Evidence Engine
+# Automated Ingestion Control Gate & Audit-Evidence Pipeline
 
-A pre-commit validation pipeline that sits between agency-reported building data and downstream systems (Salesforce / BBL registry). Every record that fails a rule leaves an immutable, UTC-stamped audit record and a categorized remediation backlog entry.
+An automated pre-commit control gate that enforces deterministic data integrity, policy reconciliation against external ground truth, and immutable audit logging prior to downstream system ingestion.
+
+Designed to operationalize Data Integrity Controls, Policy Enforcement Gates, and Defensible Audit Evidence Collection, this pipeline prevents unverified, corrupt, or out-of-tolerance records from reaching downstream reporting systems (e.g., Salesforce, ERPs, reporting warehouses).
+
+Executive Summary & Capabilities
+Automated Defensive Controls: Intercepts untrusted source inputs and applies deterministic syntactical, referential, and statistical tolerance checks before committing data to staging.
+
+Deterministic Ground-Truth Cross-Validation: Validates self-reported agency metrics against authoritative external ground truth (NYC OpenData/Socrata PLUTO), computing automated deviation thresholds (10% allowable drift).
+
+Immutable Audit Trail: Automatically writes UTC-timestamped, rule-tagged audit artifacts for every non-compliant record to ensure full forensic traceability and regulatory defensibility.
+
+Exception Remediation & Backlog Triage: Generates structured issue-attribution matrices aggregated by reporting entity and violation code, streamlining stakeholder accountability and root-cause remediation workflows.
 ## Architecture
 
 ```mermaid
