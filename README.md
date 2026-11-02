@@ -1,4 +1,4 @@
-# NYC BBL Automated QA Gate & GRC Audit-Evidence Engine
+# NYC BBL Automated QA Gate & Audit-Evidence Engine
 
 An automated pre-commit ingestion gate, deterministic data verification pipeline, and audit logging framework. The engine validates agency-submitted building and energy telemetry against authoritative public municipal ground truth (NYC PLUTO via Socrata SODA API) before allowing downstream persistence, generating immutable audit artifacts for compliance triage and governance reporting.
 
@@ -6,12 +6,12 @@ An automated pre-commit ingestion gate, deterministic data verification pipeline
 
 ## Summary &  Impact
 
-Downstream operational registries (such as CRM/ERP instances or central registry databases) fail when unvalidated, self-reported data propagates silently into production schemas.
+Downstream operational registries fail when unvalidated, self-reported data propagates silently into production schemas.
 
 This engine implements strict **pre-commit gatekeeping and verification controls**:
 
-* **Zero-Tolerance Semantic & Syntax Guardrails:** Enforces strict 10-digit borough-block-lot (BBL) identifiers on unparsed raw strings to prevent silent type coercion (e.g., dropping leading zeroes during float/int conversion).
-* **Authoritative Baseline Cross-Reconciliation:** Pulls authoritative building footprints directly from NYC Open Data (PLUTO API) and executes vectorized variance checks ($\pm 10\%$ tolerance) against reported gross floor area (GFA).
+* **Zero-Tolerance Semantic & Syntax Guardrails:** Enforces strict 10-digit borough-block-lot  identifiers on unparsed raw strings to prevent silent type coercion (e.g., dropping leading zeroes during float/int conversion).
+* **Authoritative Baseline Cross-Reconciliation:** Pulls authoritative building footprints directly from NYC Open Data (PLUTO API) and executes vectorized variance checks ($\pm 10\%$ tolerance) against reported gross floor area (.
 * **Telemetry Integrity Controls:** Screens energy metrics to flag non-physical values ($EUI \le 0$) and decommissioned/inactive meters.
 * **Deterministic Governance & Evidence Artifacts:** Divides ingest streams into clean production staging versus immutable, UTC-stamped audit logs broken down by agency and failure taxonomy.
 
